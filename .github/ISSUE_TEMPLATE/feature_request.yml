@@ -1,0 +1,52 @@
+name: Feature Request
+about: Suggest an idea for this project
+
+title: "[Feature Request]: "
+labels: enhancement
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a feature! Please fill out the information below to help us understand your idea.
+
+  - type: input
+    id: title
+    attributes:
+      label: Feature Title
+      placeholder: A short, descriptive title for the feature
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      placeholder: A clear and concise description of the feature you are requesting.
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      placeholder: Explain why this feature would be useful and who would benefit from it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      placeholder: Describe any alternative solutions or features you've considered.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      placeholder: Add any other context or screenshots about the feature request here.
+    validations:
+      required: false

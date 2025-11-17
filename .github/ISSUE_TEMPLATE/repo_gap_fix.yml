@@ -1,0 +1,60 @@
+name: Repo Gap Fix
+about: Propose a fix for identified gaps in the repository
+
+title: "[Repo Gap Fix]: "
+labels: enhancement, gap-fix
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing a fix for gaps in the repository! Please provide the details below to help us address the issue effectively.
+
+  - type: input
+    id: title
+    attributes:
+      label: Gap Fix Title
+      placeholder: A short, descriptive title for the proposed fix
+    validations:
+      required: true
+
+  - type: textarea
+    id: gap-description
+    attributes:
+      label: Gap Description
+      placeholder: A clear and concise description of the gap you are addressing.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      placeholder: Describe the solution you are proposing to fix the gap.
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-areas
+    attributes:
+      label: Affected Areas
+      placeholder: Specify the areas of the repository that are affected by this gap (e.g., agents/, scripts/, documentation).
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks or Considerations
+      placeholder: Describe any risks or considerations associated with the proposed fix.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      placeholder: Add any other context or examples to clarify the proposed fix.
+    validations:
+      required: false

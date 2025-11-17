@@ -1,0 +1,52 @@
+name: Documentation Request
+about: Request updates or additions to documentation
+
+title: "[Docs Request]: "
+labels: documentation
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping us improve our documentation! Please provide the details below to help us address your request.
+
+  - type: input
+    id: title
+    attributes:
+      label: Documentation Title
+      placeholder: A short, descriptive title for the documentation request
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Request Description
+      placeholder: A clear and concise description of the documentation update or addition you are requesting.
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-areas
+    attributes:
+      label: Affected Areas
+      placeholder: Specify the areas of the documentation that are affected (e.g., README, API docs, tutorials).
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      placeholder: Explain why this documentation update is needed and who it will benefit.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      placeholder: Add any other context or examples to clarify the request.
+    validations:
+      required: false

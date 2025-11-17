@@ -1,0 +1,60 @@
+name: Automation Improvement
+about: Suggest improvements to scripts or automation workflows
+
+title: "[Automation Improvement]: "
+labels: enhancement, automation
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting improvements to our automation! Please provide the details below to help us enhance our workflows and scripts.
+
+  - type: input
+    id: title
+    attributes:
+      label: Improvement Title
+      placeholder: A short, descriptive title for the improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-issue
+    attributes:
+      label: Current Issue
+      placeholder: Describe the current issue or limitation with the automation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: Proposed Improvement
+      placeholder: Describe the improvement you are suggesting.
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefits
+      placeholder: Explain how this improvement will benefit the project (e.g., efficiency, reliability, developer experience).
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-areas
+    attributes:
+      label: Affected Areas
+      placeholder: Specify the areas of the repository that are affected by this improvement (e.g., scripts/, CI workflows).
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      placeholder: Add any other context or examples to clarify the improvement.
+    validations:
+      required: false

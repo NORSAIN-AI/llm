@@ -1,40 +1,36 @@
-# Commit Message Prompt
+---
+agent: agent
+description: "Lag presise, profesjonelle commit-meldinger for NORSAIN GPT Platform."
+---
+Når du genererer commit-meldinger:
 
-Skriv en presis commit-melding i Conventional Commits-format.
+- Følg formatet:
+  <type>(scope): kort beskrivelse
 
-Format:
-```
-<type>(<scope>): <kort beskrivelse>
+  body:
+    - Hva som ble endret
+    - Hvorfor
+    - Konsekvenser / påvirkning
 
-<body (valgfritt)>
+- Tillatte <type>:
+  - feat: ny funksjon
+  - fix: feilretting
+  - docs: dokumentasjon
+  - refactor: kode-/strukturforbedringer
+  - style: formattering, rename
+  - test: testfiler og eval-scenarier
+  - chore: vedlikehold, konfig, CI
 
-<footer (valgfritt)>
-```
+- Scope kan være:
+  knowledge, instruction, action, eval, scripts, repo, template
 
-Typer:
-- feat: ny funksjonalitet
-- fix: feilretting
-- docs: dokumentasjon / prompts / README
-- chore: vedlikehold / config / tooling
-- refactor: kodeendring uten funksjonell endring
-- test: tester eller testrelatert struktur
-- perf: ytelsesforbedring
-- ci: endring i workflow
+- Meldingen skal være:
+  - profesjonell
+  - presis
+  - beskrivende uten unødvendige ord
+  - uten emojis
 
-Scope: kort område (f.eks. agents, scripts, openapi, knowledge, prompts).
+- Referer eksplisitt til filer hvis relevant (men kort).
 
-Regler:
-- Maks 72 tegn i subject
-- Ikke punktum på slutten av subject
-- Body brukes for detaljer: hva, hvorfor, metodikk
-- Referer til validering: "Kjørte `npm run validate` OK" hvis relevant
-- Oppgi påvirkede GPT-er eller filer ved større endringer
-
-Eksempler:
-```
-feat(agents): add summarize action to schema.json
-fix(scripts): correct knowledge index path handling
-docs(prompts): restore and standardize prompt library
-```
-
-Oppgave: Generer en commit-melding basert på diff-beskrivelse du får. Returner kun meldingen.
+Eksempel:
+feat(knowledge): lagt til 02.03_systemprompt_token_guideline.md med metadata

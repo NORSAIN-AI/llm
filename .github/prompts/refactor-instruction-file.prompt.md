@@ -1,21 +1,17 @@
-# Refactor Instruction File Prompt
+---
+agent: agent
+description: "Refaktorer og forbedre GPT-instruksjonsfiler i henhold til NGAS-systemstandard."
+---
+Når du jobber med instruction.md eller andre systeminstruksjoner:
 
-Mål: Restrukturere en eksisterende instruksjonsfil til standardformatet.
-
-Standardstruktur:
-1. Identity & Purpose
-2. Scope
-3. Behaviour Rules
-4. Constraints
-5. Safety Rules
-6. Signal–Response Patterns
-7. Output Requirements
-
-Prosess:
-- Identifiser eksisterende seksjoner
-- Kartlegg innhold til nye seksjoner
-- Fjern overflødig narrativ tekst
-- Konsolider dupliserte regler
-- Sikre konsis terminologi (NGAS, GPT, actions, knowledge)
-
-Output: Full ny fil (Markdown) uten ekstra kommentar.
+- Fokus på presis, styrende, konsistent atferdslogikk.
+- Struktur skal inkludere:
+  1. Identity & Purpose
+  2. Scope (in/out-of-scope)
+  3. Behaviour & Reasoning Rules
+  4. Safety, Constraints & Guardrails
+  5. Signal–Response Patterns
+  6. Output-format krav
+- Ingen kunnskap i instruksjonsfiler.
+- Ingen unødvendige avsnitt.
+- Språk: nøytralt, profesjonelt, direkte.

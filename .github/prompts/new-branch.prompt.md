@@ -1,26 +1,24 @@
-# Branch-navn Prompt
-
-Når du ber om forslag til branch-navn, følg disse reglene:
+---
+agent: agent
+description: "Generer konsistente og presise branch-navn for NORSAIN GPT Platform."
+---
+Når du foreslår branch-navn:
 
 Format:
-```
-<type>/<kort-scope>-<kort-beskrivelse>
-```
-
-Type må være én av:
-- feat
-- fix
-- docs
-- refactor
-- test
-- chore
+<type>/<short-scope>-<short-description>
 
 Regler:
-- kun små bokstaver
+- bruk små bokstaver
+- bruk kebab-case i beskrivelse
+- maks 5–6 ord
 - ingen emojis eller ekstra tegn
-- bruk kebab-case i beskrivelsen
-- maks 5–6 ord totalt etter skråstrek
-- skal være forståelig uten ekstra kontekst
+- <type> må være:
+  - feat
+  - fix
+  - docs
+  - refactor
+  - test
+  - chore
 
 Eksempler:
 - feat/custom-gpt-instruction-upgrade
@@ -28,4 +26,4 @@ Eksempler:
 - fix/template-knowledge-index
 - test/eval-negative-scenarios
 
-Returner kun selve branch-navnet (uten backticks) hvis eksplisitt bedt om.
+Branch-navn skal være lett å lese og forstå uten kontekst.

@@ -1,33 +1,43 @@
-# Pull Request Prompt
+---
+agent: agent
+description: "Lag klare, profesjonelle Pull Request-beskrivelser for NORSAIN GPT Platform."
+---
+Når du skriver en PR:
 
-Strukturér PR-beskrivelsen slik:
+Struktur:
 
-## Oversikt
-Kort oppsummering av endringen.
-
-## Bakgrunn / Motiv
-Hvorfor endringen trengs (problem, mål, NGAS-krav).
+## Formål
+Beskriv hva og hvorfor endringene gjøres.
 
 ## Endringer
-Liste over hovedendringer:
-- Nye filer / mapper
-- Oppdaterte scripts / OpenAPI
-- Kunnskapsfiler lagt til / fjernet
+Liste opp:
+- nye filer
+- modifiserte filer
+- slettede filer
+- strukturelle endringer
+- NGAS-relaterte forbedringer
 
-## Validering
-Hvordan kvalitet verifisert:
-- `npm run validate`
-- `npm run generate-index`
-- OpenAPI 3.1 sjekk (schema.json)
-- Manuell inspeksjon av YAML-frontmatter
+## Risiko / påvirkning
+- påvirker andre GPT-er?
+- endrer standarder?
+- krever oppdatering av index?
+- krever ny validering eller test?
 
-## Risiko / Impact
-Potensielle bivirkninger, migrering, kompatibilitet.
+## Hvordan teste
+Beskriv teststeg, inkludert:
+- kjør `npm run knowledge:validate`
+- kjør `npm run knowledge:index`
+- spesifikke eval-scenarier hvis relevant
 
-## Oppfølging
-Planlagte neste steg eller TODOs.
+## Sjekkliste
+- [ ] korrekt filnavngivning
+- [ ] metadata validert
+- [ ] NGAS samsvar
+- [ ] CI grønn
+- [ ] 20-filgrense bevart (hvis knowledge)
 
-## Referanser
-Lenker til issues, designnotater, NGAS-dokumenter.
-
-Instruksjon til Copilot: Generer PR-beskrivelse basert på gitt diff / endringsliste. Ikke finn på endringer som ikke er beskrevet.
+PR-teksten skal være:
+- kompakt
+- objektiv
+- 100% teknisk
+- uten emojis

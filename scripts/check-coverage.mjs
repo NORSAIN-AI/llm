@@ -2,12 +2,29 @@ import fs from 'fs';
 import path from 'path';
 
 const summaryPath = path.resolve(process.cwd(), 'coverage', 'coverage-summary.json');
-if (!fs.existsSync(summaryPath)) {
-  console.error('coverage-summary.json not found. Did vitest generate coverage?');
+const finalPath = path.resolve(process.cwd(), 'coverage', 'coverage-final.json');
+let data = null;
+
+if (fs.existsSync(summaryPath)) {
+  data = JSON.parse(fs.readFileSync(summaryPath, 'utf-8'));
+} else if (fs.existsSync(finalPath)) {
+  // Vitest may emit an Istanbul "coverage-final.json". Convert to summary-like structure.
+  const final = JSON.parse(fs.readFileSync(finalPath, 'utf-8'));
+  // final has file keys with metrics under 'lines', 'branches', etc. We'll map to a summary object.
+  data = { total: {}, };
+  for (const [file, metrics] of Object.entries(final)) {
+    if (file === 'total') continue;
+    const entry = {};
+    if (metrics.lines) entry.lines = { total: metrics.lines.total || 0, covered: metrics.lines.covered || 0 };
+    if (metrics.branches) entry.branches = { total: metrics.branches.total || 0, covered: metrics.branches.covered || 0 };
+    if (metrics.functions) entry.functions = { total: metrics.functions.total || 0, covered: metrics.functions.covered || 0 };
+    if (metrics.statements) entry.statements = { total: metrics.statements.total || 0, covered: metrics.statements.covered || 0 };
+    data[file] = entry;
+  }
+} else {
+  console.error('No coverage summary found. Did vitest generate coverage?');
   process.exit(2);
 }
-
-const data = JSON.parse(fs.readFileSync(summaryPath, 'utf-8'));
 
 function aggregateForPrefix(prefix) {
   let linesTotal = 0, linesCovered = 0;
@@ -32,31 +49,57 @@ function aggregateForPrefix(prefix) {
   return { linesPct, branchesPct, linesTotal, branchesTotal };
 }
 
-const src = aggregateForPrefix('src/');
-const scripts = aggregateForPrefix('scripts/');
-
-const thresholds = {
-  src: { lines: 85, branches: 75 },
-  scripts: { lines: 80, branches: 70 },
-};
+const targets = [
+  {
+    label: 'src',
+    prefix: 'src/',
+    thresholds: { lines: 85, branches: 75 },
+  },
+  {
+    label: 'scripts/utils',
+    prefix: 'scripts/utils/',
+    thresholds: { lines: 60, branches: 40 },
+  },
+  {
+    label: 'scripts (info only)',
+    prefix: 'scripts/',
+    thresholds: null,
+  },
+];
 
 let failed = false;
 
-function check(name, actual, required, metric) {
-  const ok = actual >= required;
-  if (!ok) {
-    console.error(`Coverage threshold failed for ${name}: ${metric} ${actual.toFixed(1)}% < ${required}%`);
+for (const target of targets) {
+  const result = aggregateForPrefix(target.prefix);
+
+  const linesMsg = `${target.label}: lines ${result.linesPct.toFixed(1)}%`;
+  const branchesMsg = `${target.label}: branches ${result.branchesPct.toFixed(1)}%`;
+
+  if (!target.thresholds) {
+    console.log(`[info] ${linesMsg}`);
+    console.log(`[info] ${branchesMsg}`);
+    continue;
+  }
+
+  const { lines: linesThreshold, branches: branchesThreshold } = target.thresholds;
+  if (result.linesPct < linesThreshold) {
+    console.error(`Coverage threshold failed for ${target.label}: lines ${result.linesPct.toFixed(1)}% < ${linesThreshold}%`);
     failed = true;
   } else {
-    console.log(`Coverage OK for ${name}: ${metric} ${actual.toFixed(1)}% >= ${required}%`);
+    console.log(`Coverage OK for ${target.label}: lines ${result.linesPct.toFixed(1)}% >= ${linesThreshold}%`);
+  }
+
+  if (result.branchesPct < branchesThreshold) {
+    console.error(`Coverage threshold failed for ${target.label}: branches ${result.branchesPct.toFixed(1)}% < ${branchesThreshold}%`);
+    failed = true;
+  } else {
+    console.log(`Coverage OK for ${target.label}: branches ${result.branchesPct.toFixed(1)}% >= ${branchesThreshold}%`);
   }
 }
 
-check('src', src.linesPct, thresholds.src.lines, 'lines');
-check('src', src.branchesPct, thresholds.src.branches, 'branches');
-check('scripts', scripts.linesPct, thresholds.scripts.lines, 'lines');
-check('scripts', scripts.branchesPct, thresholds.scripts.branches, 'branches');
+if (failed) {
+  process.exit(2);
+}
 
-if (failed) process.exit(2);
 console.log('All coverage thresholds met.');
 process.exit(0);

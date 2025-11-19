@@ -1,40 +1,101 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+name: Bug Report
+about: Rapportér en feil som påvirker funksjonalitet, scripts, GPT-pakker eller dokumentasjon
+title: "[BUG] "
+labels: ["bug"]
+assignees: []
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+# Bug Report
 
-**To Reproduce**
-Steps to reproduce the behavior:
+## 1. Sammendrag
+En kort og presis beskrivelse av feilen.
 
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Eksempel:**
+"Markdownlint feiler på MD022 i flere template-filer etter siste merge."
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+---
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## 2. Forventet oppførsel
+Hva forventet du skulle skje?
 
-**Desktop (please complete the following information):**
+---
 
-- OS: [e.g. iOS]
-- Browser [e.g. chrome, safari]
-- Version [e.g. 22]
+## 3. Faktisk oppførsel
+Hva skjedde i stedet?
 
-**Smartphone (please complete the following information):**
+- Feilmeldinger / stacktraces
+- CI-jobber som feilet
+- Output fra scripts (`npm run validate`, `npx markdownlint-cli2`, etc.)
 
-- Device: [e.g. iPhone6]
-- OS: [e.g. iOS8.1]
-- Browser [e.g. stock browser, safari]
-- Version [e.g. 22]
+---
 
-**Additional context**
-Add any other context about the problem here.
+## 4. Reproduksjon
+Beskriv tydelige steg for å gjenskape feilen:
+
+1. …
+2. …
+3. …
+4. …
+
+> Inkluder **presise paths** der det er relevant
+> (f.eks. `agents/<gpt>/knowledge/01.foundation/...` eller `scripts/…`)
+
+---
+
+## 5. Miljøinformasjon
+
+**Development environment:**
+
+- OS:
+- Node-versjon:
+- npm-versjon:
+- Editor: (VS Code, Web, IntelliJ)
+- Copilot-modell brukt (dersom relevant):
+
+**CI-environment (valgfritt):**
+
+- GitHub Actions Runner: ubuntu-latest
+- Workflow:
+  - [ ] ci.yml
+  - [ ] validate-gpts.yml
+  - [ ] auto-pr.yml
+
+---
+
+## 6. Påvirkningsområde (velg det som gjelder)
+
+- [ ] Scripts (`scripts/**`)
+- [ ] GPT-pakker (`agents/**`)
+- [ ] Actions (`agents/**/actions`)
+- [ ] Knowledge (`agents/**/knowledge`)
+- [ ] Instruction.md (`agents/**/instructions`)
+- [ ] CI (`.github/workflows/**`)
+- [ ] Dokumentasjon (`docs/**`)
+- [ ] Repo-struktur / templates
+- [ ] Annet (forklar under)
+
+---
+
+## 7. Severity (obligatorisk)
+
+Velg en:
+
+- [ ] **Critical** – Blokkerer utvikling eller main-branch, CI stopper
+- [ ] **High** – Breaker funksjon eller scripts, men kan omgås midlertidig
+- [ ] **Medium** – Feil i dokumentasjon eller templates
+- [ ] **Low** – Layout, formatering, regelforstyrrelser (markdownlint etc.)
+
+---
+
+## 8. Logs, output eller skjermbilder
+
+Legg ved:
+
+- Feilmeldinger fra CI
+- Output fra validering
+- Output fra `npm run validate`
+- Skjermbilder eller CLI-logs
+
+```text
+<lim log-output her>

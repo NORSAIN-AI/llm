@@ -10,6 +10,8 @@
     "generate-repo-structure": "tsx scripts/generate-repo-structure.mts",
     "test": "vitest",
     "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "test:ci": "vitest --coverage && node scripts/check-coverage.mjs",
     "lint": "eslint . --ext .ts,.mts",
     "format": "prettier --write \"**/*.{ts,mts,json,md}\"",
     "typecheck": "tsc --noEmit",

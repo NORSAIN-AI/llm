@@ -1,66 +1,139 @@
-# Model Selection Strategy
+---
+document_id: GOV-ML-001
+title: Model Selection Strategy (Cost vs. Quality)
+version: 2.0.0
+status: Approved
+owner: NORSAIN Engineering Governance
+review_cycle: Quarterly
+tags:
+  - ai-governance
+  - copilot
+  - model-selection
+  - engineering-standards
+  - norsain
+  - cost-control
+---
 
-Purpose
+# Model Selection Strategy (v2.0)
 
-This document defines a practical strategy for selecting language models for NORSAIN GPT Platform workloads. It captures evaluation criteria, trade-offs, and a recommended decision flow so teams can consistently choose an appropriate model for a given task.
+Denne strategien definerer valg av AI-modeller brukt i NORSAIN-prosjekter.
+Målet er balansert bruk av kvalitet, kost og ytelse – spesielt i Copilot-agenter og GPT-integrasjoner på tvers av Backend Core, MAS, MCP, QMS/IMS, og engineering workflows.
 
-## Principles
+---
 
-- Match model capability to task criticality: use stronger models for high-stakes, complex reasoning tasks and smaller models for routine or cost-sensitive tasks.
-- Prefer models with longer context windows for use-cases requiring large prompts or many knowledge chunks.
-- Prioritise safety, instruction-following and evaluation results over raw benchmarks when production risk exists.
-- Measure empirically: prefer A/B testing and evaluation matrices over assumptions.
+# 1. Prinsipper for modellvalg
 
-## Key selection criteria
+1. Bruk *laveste modell som gir akseptabel kvalitet*.
+2. Velg **Codex** for kode der tilgjengelig.
+3. Velg **Sonnet** for lange dokumenter, analyser og QMS-arbeid.
+4. Velg **GPT-5.1** for arkitektur, resonnement og komplekse systemoppgaver.
+5. Mini-/fast-modeller brukes der tid og kostnad er viktigst.
+6. Modellvalg skal stå i agentens `model:`-felt.
 
-- Accuracy / reasoning capability: how well the model handles complex, multi-step reasoning and domain-specific correctness.
-- Instruction-following: quality of adhering to system prompts and constraints.
-- Latency & throughput: acceptable response time for interactive workflows.
-- Cost per call: inference cost and total expected monthly spend.
-- Context window / token capacity: required prompt + expected response size.
-- Safety and hallucination rate: empirical safety checks and guardrails performance.
-- Fine-tuning or adapters support: whether the model supports further tuning or instruction tuning as needed.
-- Tooling & integrations: compatibility with the action/tooling patterns used in the repo.
+---
 
-## Decision flow (recommended)
+# 2. Modelloversikt (alle aktuelle modeller)
 
-1. Classify the task by criticality:
-   - High-criticality: security reviews, production architecture decisions, legal/compliance drafts.
-   - Medium-criticality: non-production architecture guidance, code examples for engineers.
-   - Low-criticality: brainstorming, exploratory notes, generic docs.
+| Modell | Styrker | Svakheter | Typiske bruksområder |
+|--------|---------|-----------|-----------------------|
+| **GPT-5.1 Codex** | Best kodeforståelse 2025 | Dyrest i kodenær bruk | Refaktorering på tvers av repoer, avansert debugging |
+| **GPT-5.1** | Best resonnement, arkitektur | Overkill for småting | Backend Core design, MAS/MCP-arkitektur |
+| **GPT-5 Codex** | Sterk kode, raskere enn 5.1 | Mindre kontekst | Modulrefaktorering, testkode |
+| **GPT-5** | God på alt (balansert) | Ikke best på noe | Arkitektur, PM, analyseskriving |
+| **GPT-5 Mini** | Gratis/0x kost, rask | Begrenset kontekst | Små kodeendringer, README |
+| **GPT-4o** | Balansert, multimodal | Ikke topp på kode | Arkitektur + tekst + skjermbilder |
+| **GPT-4.1** | Forutsigbar og stabil | Lav dybde | QA, enkel kode, korte dokumenter |
+| **Grok Code Fast 1** | Lynrask kodehjelp | Svak på store repoer | Quick-fix kode, patch i én fil |
+| **Raptor Mini** | Svært rask | Begrenset presisjon | Tekstutkast, små snippets |
+| **Claude Haiku 4.5** | Best mini-tekstkvalitet | Ikke sterk kodeforståelse | Notater, kort dokumentasjon |
+| **Claude Sonnet 4.5** | Best dokumentmodell | Mer formalistisk | QMS/IMS policies, rapporter |
+| **Gemini 2.5 Pro** | Stor kontekst, teknisk analyse | Langsom enkelte ganger | Multi-repo, tunge analyser |
 
-2. Estimate token requirements (prompt + expected response). If > context window of inexpensive models, move to larger-context models.
+---
 
-3. Run a small benchmark: select 3 candidate models (cost-efficient, medium, high-capability) and run a representative set of prompts (use the `agents/templates/evals` matrix and scenarios).
+# 3. Beslutningsmatrise per oppgavetype
 
-4. Evaluate on metrics: relevance, correctness, safety, latency, cost. Use the evaluation matrix and log templates to capture results.
+## 3.1 Kode
 
-5. Choose model that hits minimum thresholds for correctness and safety while minimizing cost. If no model meets thresholds, consider hybrid patterns (tooling, retrieval-augmented generation, or fine-tuning).
+| Oppgave | Anbefalt modell | Alternativ |
+|---------|----------------|------------|
+| Quick fix (én fil) | Grok Code Fast 1 | GPT-5 Mini |
+| Mindre moduler | GPT-5 Codex | GPT-4o |
+| Kompleks refaktor | GPT-5.1 Codex | GPT-5 Codex |
+| Debugging tvers av repo | GPT-5.1 Codex | GPT-5.1 |
+| Generere backend-tjenester | GPT-5.1 Codex | GPT-5 |
 
-6. Monitor in production: collect logs, run periodic re-evaluations and drift checks.
+---
 
-## Example mappings (illustrative)
+## 3.2 Arkitektur & systemdesign
 
-- High-accuracy, high-safety tasks: choose the highest-capability model available that fits latency and budget constraints.
-- Developer assistance, code generation: prioritize instruction-following and code reliability — prefer models that score well on code evaluation prompts.
-- Low-latency UI features: prefer smaller/faster models with caching and retrieval to reduce calls.
+| Oppgave | Modell | Alternativ |
+|---------|--------|------------|
+| Høynivå design | GPT-4o | GPT-5 |
+| Backend Core | GPT-5.1 | Gemini 2.5 Pro |
+| MAS-agent­modeller | GPT-5.1 | GPT-5 |
+| MCP-serverdesign | GPT-5.1 | Gemini 2.5 Pro |
+| Tverrdomene systemanalyse | GPT-5.1 | Claude Sonnet 4.5 |
 
-## Evaluation process
+---
 
-- Use `agents/templates/evals/eval_scenarios.template.md` to define scenarios and `eval_matrix.template.md` to score models.
-- Maintain `agents/templates/evals/eval_log.template.md` entries for each test run.
-- Automate benchmarks where possible and store results in CI artifacts.
+## 3.3 Dokumentasjon (QMS/IMS)
 
-## Monitoring & lifecycle
+| Oppgave | Modell | Alternativ |
+|---------|--------|------------|
+| Korte dokumenter | Haiku 4.5 | GPT-5 Mini |
+| Policies / prosedyrer | Claude Sonnet 4.5 | GPT-5.1 |
+| CAPA / risikoanalyser | Claude Sonnet 4.5 | GPT-5.1 |
+| Lange rapporter | Claude Sonnet 4.5 | Gemini 2.5 Pro |
 
-- Track key metrics: user-reported issues, hallucination incidents, latency, token usage and cost.
-- Re-evaluate quarterly or when usage patterns change.
-- If performance or safety degrades, trigger an ADR and run targeted re-benchmarks.
+---
 
-## Next steps
+## 3.4 PM / Scrum / Prince2 Agile
 
-- Create a short benchmark suite derived from common prompts and integrate it into CI so model comparisons are reproducible.
-- Add recommended default model names and cost estimates in a private document if required by procurement.
+| Oppgave | Modell | Alternativ |
+|---------|--------|------------|
+| Sprintplan | GPT-5 Mini | Haiku |
+| Roadmap-analyse | GPT-5 | GPT-4o |
+| Strategisk planlegging | GPT-5.1 | Claude Sonnet 4.5 |
 
+---
 
-Generated: 2025-11-19
+## 3.5 Repo-analyse
+
+| Oppgave | Modell | Alternativ |
+|---------|--------|------------|
+| Lite repo | GPT-5 Codex | GPT-4o |
+| Stort repo | GPT-5.1 Codex | GPT-5.1 |
+| Multi-repo gap-analyse | GPT-5.1 | Gemini 2.5 Pro |
+
+---
+
+# 4. Agentstandarder (default modeller)
+
+| Agent | Standardmodell |
+|--------|----------------|
+| Code Architect & Pair Programmer | GPT-5.1 Codex |
+| Quick Fix Agent | Grok Code Fast 1 |
+| Repo Gap Analysis Agent | GPT-5.1 Codex |
+| Backend Core Architect | GPT-5.1 |
+| MCP Server Architect | GPT-5.1 |
+| MAS Architecture Agent | GPT-5.1 |
+| Documentation Assistant | Claude Sonnet 4.5 |
+| Commit & PR Agent | GPT-5.1 Codex |
+| Project Manager Agent | GPT-5.1 |
+
+---
+
+# 5. Forenklet beslutningsregel
+
+1. Start med **laveste fornuftige modell** (Mini/Haiku/Grok).
+2. Hvis kvalitet faller → **GPT-5 Codex** eller **GPT-4o**.
+3. Hvis kompleksitet øker → **GPT-5.1 Codex** (kode) eller **GPT-5.1** (arkitektur).
+4. For dokumenter → **Claude Sonnet 4.5**.
+
+---
+
+# 6. Revisjon
+
+- Dokumentet oppdateres **kvartalsvis** eller ved større modellendringer i VS Code.
+

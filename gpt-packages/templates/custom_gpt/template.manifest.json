@@ -43,6 +43,9 @@
     "evals": [
       "_library/evals/eval_matrix.template.md"
     ]
+    ,"prompts": [
+      "_library/prompts/build_custom_gpt.prompt.md"
+    ]
   },
 
   "constraints": {

@@ -1,62 +1,119 @@
-# Pull Request – NORSAIN GPT Platform
+Under finner du en **forbedret, profesjonell, streng og NGAS-tilpasset Pull Request-mal** for `norsain-gpt-platform`.
+Dette er toppnivå-kvalitet – kort, presis, verifiserbar og CI-klar.
 
-## Summary
+Plassering:
 
-Short summary of the change. What was added, removed, or updated?
-
-## What Problem Does This Solve?
-
-Explain the issue, gap, or requirement addressed by this PR.
-
-## Changes Introduced
-
-List the key changes clearly:
-
-- [ ] Instructions updated
-- [ ] Knowledge files updated
-- [ ] Actions / OpenAPI updated
-- [ ] Eval scenarios added/updated
-- [ ] Scripts updated (scaffold/validate/index)
-- [ ] Docs/ADR added or modified
-- [ ] No NGAS-impact
-
-If knowledge files changed:
-
-- File naming rules respected? (`NN.NN_snake_case.md`)
-- Metadata validated?
-- Max 20 files preserved?
-
-## Validation Performed
-
-Describe the validation done locally:
-
-```bash
-npm run validate
-npm run generate-index
-npm run lint
-npm run typecheck
+```
+.github/PULL_REQUEST_TEMPLATE.md
 ```
 
-If applicable, note:
+---
 
-- validation output
-- warnings resolved
-- index updated
+# ✔ **FORBEDRET PULL REQUEST TEMPLATE – NORSAIN GPT PLATFORM**
 
-## Screenshots / Examples (Optional)
+````md
+# Pull Request – NORSAIN GPT Platform
 
-If relevant.
+## 1. Summary
+Kort og presist: hva ble endret, lagt til eller fjernet?
 
-## Checklist
+---
 
-- [ ] Commit message follows NORSAIN conventions
-- [ ] PR description is complete
-- [ ] No unexpected diffs
-- [ ] All scripts pass locally
-- [ ] Folder structure not violated
-- [ ] NGAS rules followed
-- [ ] Reviewer instructions added
+## 2. Problem / Gap Addressed
+Beskriv hvorfor endringen er nødvendig:
 
-## Reviewer Notes
+- Hvilket problem eller brudd ble oppdaget?
+- Hvilket behov, krav eller NGAS-regel adresseres?
+- Henvis gjerne til issue-nummer eller rapport-ID.
 
-Provide any special context for the reviewer.
+---
+
+## 3. Changes Introduced
+Gi en tydelig oversikt over hva som faktisk er endret:
+
+### Scope (velg det som gjelder)
+- [ ] Instructions (`agents/**/instructions`)
+- [ ] Knowledge files (`agents/**/knowledge`)
+- [ ] Actions / OpenAPI (`agents/**/actions`)
+- [ ] Scripts (`scripts/**`)
+- [ ] Docs (`docs/**`)
+- [ ] CI / workflows (`.github/workflows/**`)
+- [ ] Templates (`agents/_template/**`)
+- [ ] No NGAS-impact
+- [ ] Other (specify):
+
+### Details
+- Kort punktliste over konkrete endringer (1–5 linjer, maks).
+
+---
+
+## 4. Knowledge File Integrity (hvis relevant)
+Hvis PR påvirker *knowledge*:
+
+- [ ] Filnavn følger `NN.NN_snake_case.md`
+- [ ] YAML-frontmatter validert
+- [ ] Maks 20 files per GPT-pakke overholdt
+- [ ] Plassert i riktig kategori / mappe
+- [ ] Ingen duplisering av innhold
+
+---
+
+## 5. Validation Performed
+
+### Lokale sjekker
+Kjørte du følgende?
+
+```bash
+npm ci
+npm run validate --if-present
+npm run generate-index --if-present
+npm run lint --if-present
+npm run typecheck --if-present
+npm test --if-present
+````
+
+Noter resultater:
+
+* CI-lokalt passerte?
+* Index generert uten feil?
+* Markdownlint problemer løst?
+* Scripts (scaffold/validate/index) fungerer?
+
+### GPT-pakkevalidering
+
+Hvis GPT-pakker ble endret:
+
+* [ ] `validate-gpts.yml` passerte lokalt (styrer 20-fils-regel + struktursjekk)
+* [ ] Ingen brudd på NGAS-arkitektur
+
+---
+
+## 6. Screenshots / Examples (Optional)
+
+Legg kun ved dersom det hjelper en reviewer å forstå endringen.
+
+---
+
+## 7. Checklist (obligatorisk)
+
+* [ ] Commit message følger NORSAIN conventions (feat/fix/chore/docs/refactor)
+* [ ] PR-beskrivelse er fullstendig
+* [ ] Ingen uventede diffs
+* [ ] Ingen endring i repo-struktur uten eksplisitt grunn
+* [ ] Alle relevante scripts kjører grønt
+* [ ] NGAS-regler fulgt (instructions, knowledge, actions)
+* [ ] CI går grønt
+* [ ] Reviewer Notes fylt ut (hvis nødvendig)
+
+---
+
+## 8. Reviewer Notes
+
+Kort informasjon som hjelper reviewer:
+
+* Scope-avklaringer
+* Endepunkter som er sensitive
+* Filer som krever ekstra oppmerksomhet
+* Eventuell migrasjon som må gjøres
+
+```

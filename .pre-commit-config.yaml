@@ -1,0 +1,43 @@
+# Pre-commit configuration for norsain-gpt-platform
+# - Lightweight repo-level checks from pre-commit-hooks
+# - Local hooks that run node-based linters/formatters via npx (requires Node.js installed)
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: prettier
+        name: Prettier format
+        description: Run Prettier to format files (ts, mts, json, md)
+        entry: npx --no-install prettier --write .
+        language: system
+        files: "\\.(ts|mts|json|md)$"
+
+      - id: markdownlint
+        name: Markdownlint CLI
+        description: Run markdownlint-cli2 against repository markdown files
+        entry: npx --no-install markdownlint-cli2 "**/*.md" --ignore-path .markdownlintignore
+        language: system
+        files: "\\.md$"
+
+      - id: npm-lint
+        name: NPM lint (ESLint)
+        description: Run the project's lint script if present
+        entry: bash -lc "npm run lint --if-present"
+        language: system
+        pass_filenames: false
+        files: "\\.(ts|mts|js|json|md)$"
+
+# Notes:
+# - These local hooks call Node tooling via npx which requires Node.js and the project's
+#   devDependencies to be installed (run `pnpm install` or `npm ci`).
+# - The `pre-commit` framework is optional alongside Husky; choose one workflow and
+#   keep hooks consistent. If you prefer Husky, we can instead add comparable hooks
+#   to `.husky/pre-commit`.

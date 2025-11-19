@@ -1,65 +1,130 @@
 name: Bug Report
-about: Create a report to help us improve
-
-title: "[Bug]: "
-labels: bug
-assignees: ''
+description: Report an issue affecting scripts, GPT packages, CI, or documentation
+title: "[BUG] "
+labels: ["bug"]
+assignees: []
 
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to report a bug. Please fill out the information below to help us understand and resolve the issue.
+        Thank you for reporting a bug.
+        Please provide the details below to help us diagnose and resolve the issue efficiently.
 
   - type: input
-    id: title
+    id: summary
     attributes:
-      label: Bug Title
-      placeholder: A short, descriptive title for the bug
+      label: Summary
+      description: A short, descriptive title for the bug
+      placeholder: "Markdownlint fails on MD022 in instructions template"
     validations:
       required: true
 
   - type: textarea
     id: description
     attributes:
-      label: Bug Description
-      placeholder: A clear and concise description of what the bug is.
+      label: Description
+      description: A clear and concise description of what the bug is.
+      placeholder: "Describe the unexpected behavior or faulty output."
     validations:
       required: true
 
   - type: textarea
-    id: steps-to-reproduce
-    attributes:
-      label: Steps to Reproduce
-      placeholder: |
-        Steps to reproduce the behavior:
-        1. Go to '...'
-        2. Click on '....'
-        3. Scroll down to '....'
-        4. See error
-    validations:
-      required: true
-
-  - type: textarea
-    id: expected-behavior
+    id: expected
     attributes:
       label: Expected Behavior
-      placeholder: A clear and concise description of what you expected to happen.
+      placeholder: "Explain what you expected to happen."
     validations:
       required: true
 
   - type: textarea
-    id: actual-behavior
+    id: actual
     attributes:
       label: Actual Behavior
-      placeholder: A clear and concise description of what actually happened.
+      placeholder: "Explain what actually happened, including CI errors or logs."
     validations:
       required: true
 
   - type: textarea
-    id: additional-context
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Provide clear steps to reproduce the issue.
+      placeholder: |
+        1. Go to '...'
+        2. Run 'npm run validate'
+        3. Open file X
+        4. CI fails with error Y
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How serious is the issue?
+      options:
+        - Critical – blocks development or CI on main
+        - High – breaks scripts or GPT logic
+        - Medium – template or documentation issues
+        - Low – formatting, lint errors, minor inconsistencies
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: impact-area
+    attributes:
+      label: Impact Area
+      description: Select all areas affected by the bug.
+      options:
+        - label: Scripts (`scripts/**`)
+        - label: GPT packages (`agents/**`)
+        - label: Knowledge files (`agents/**/knowledge`)
+        - label: Instruction files (`agents/**/instructions`)
+        - label: Actions (`agents/**/actions`)
+        - label: CI workflows (`.github/workflows/**`)
+        - label: Docs (`docs/**`)
+        - label: Templates (`agents/templates/**`)
+        - label: Other (describe below)
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Development or CI environment information.
+      placeholder: |
+        - OS: macOS / Linux / Windows
+        - Node: v22
+        - npm: 10.x
+        - Editor: VS Code
+        - Copilot Model: gpt-5.1 or grok-code-fast-1
+        - CI runner: ubuntu-latest
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, Outputs, or Screenshots
+      description: Attach logs, CI errors, or screenshots that show the issue.
+      placeholder: |
+        <paste relevant logs or CI output here>
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
     attributes:
       label: Additional Context
-      placeholder: Add any other context about the problem here (e.g., environment, logs, screenshots).
+      placeholder: Add any other context that may help diagnose the issue.
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested Fix (Optional)
+      description: If you have insight into the root cause or a potential solution, include it here.
+      placeholder: "Fix MD022 by adding blank lines before H2 headings in template files."
     validations:
       required: false

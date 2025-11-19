@@ -1,4 +1,4 @@
-npm installimport { readdir, stat, writeFile } from 'fs/promises';
+import { readdir, writeFile } from 'fs/promises';
 import { join, relative } from 'path';
 import { fileURLToPath } from 'url';
 

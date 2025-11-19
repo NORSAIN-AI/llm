@@ -6,20 +6,20 @@
 npm test
 ```
 
-Structure
+## Structure
 
-```
+```text
 tests/
   utils/
     scaffolding.template-resolution.test.mts   # unit test for resolving templates
   scaffolding.integration.test.mts            # integration test for full scaffold workflow
 ```
 
-Goals
+## Goals
 
 Verify template selection:
 
-templates/custom_gpt → templates → _template
+`templates/custom_gpt -> templates -> _template`
 
 Verify full scaffolding:
 

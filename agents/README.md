@@ -28,7 +28,7 @@ npm run scaffold my-assistant \
 
 Each Custom GPT follows this structure:
 
-```
+```text
 [gpt-name]/
 ├── gpt.json              # Configuration metadata (name, description, author, tags, created)
 ├── README.md             # GPT documentation
@@ -51,7 +51,8 @@ Each Custom GPT follows this structure:
 
 Validate your GPT structure (errors vs warnings):
 
-- Errors (block commit/workflow): missing required directories (`instructions`, `actions`, `knowledge`), missing `gpt.json`, or `knowledge/` containing more than 20 files.
+- Errors (block commit/workflow): missing required directories (`instructions`, `actions`, `knowledge`), missing `gpt.json`,
+  or `knowledge/` containing more than 20 files.
 - Warnings (informational): missing `instructions/main.md`, missing `actions/schema.json`, or empty `knowledge/`.
 
 Run validator:
@@ -76,6 +77,7 @@ npm run validate
 
 ## Example GPTs and templates
 
-Check `agents/templates/` (especially `agents/templates/custom_gpt`) for the base structure and example files used by the scaffolder.
+Check `agents/templates/` (especially `agents/templates/custom_gpt`)
+for the base structure and example files used by the scaffolder.
 
 See `agents/templates/README.md` for details on template contents and conventions.

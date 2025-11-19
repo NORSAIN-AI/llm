@@ -146,7 +146,7 @@ All scripts use ES modules (`.mts` extension) with:
 - **Node.js built-ins**: `fs/promises`, `path`, etc.
 - **No external dependencies**: Keeps runtime dependencies minimal
 
-Note about templates: the scaffolder expects a template at `agents/_template`. If your repo uses `agents/templates/` (or another path), either create an `_template` alias or update `scripts/utils/scaffolding.mts` to point to the correct template location.
+Note about templates: the scaffolder expects templates under `agents/templates` (prefer `agents/templates/custom_gpt`). Ensure one of these directories exists and contains the template files used to scaffold new GPTs.
 
 ## Adding New Scripts
 

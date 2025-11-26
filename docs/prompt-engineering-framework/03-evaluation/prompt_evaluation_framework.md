@@ -1,14 +1,3 @@
-Under står **versjon 1.0 av `prompt_evaluation_framework.md`**, ferdig som komplett fil i **ren Markdown** og i **produksjonsklar standard** – inkludert profesjonell YAML-frontmatter, konsistent seksjonsstruktur, QMS-kompatibel oppbygging, og klar for bruk i repo / Notion / GPT-kunnskapspakke.
-
-Dette er en **formell NORSAIN-standardfil**.
-
----
-
-# **`prompt_evaluation_framework.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-```markdown
 ---
 document_id: NPEF-EVAL-001
 title: "Prompt Evaluation Framework"

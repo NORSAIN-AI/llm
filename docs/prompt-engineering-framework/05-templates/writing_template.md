@@ -1,12 +1,3 @@
-Her er **`writing_template.md` (v1.0)** — ren Markdown, konsistent med alle tidligere filer, og profesjonelt strukturert for NPEF.
-
----
-
-# **`writing_template.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-```markdown
 ---
 document_id: NPEF-TPL-004
 title: "Writing Prompt Template"

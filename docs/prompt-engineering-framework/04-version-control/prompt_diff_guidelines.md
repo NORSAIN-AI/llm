@@ -1,13 +1,3 @@
-Her kommer siste fil i modul A – **`prompt_diff_guidelines.md`**, ryddig, profesjonell, og helt i tråd med strukturen i de to foregående filene.
-Alt er ren Markdown, klar for repo, QMS eller GPT-kunnskapspakke.
-
----
-
-# **`prompt_diff_guidelines.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-```markdown
 ---
 document_id: NPEF-VC-003
 title: "Prompt Diff Guidelines"

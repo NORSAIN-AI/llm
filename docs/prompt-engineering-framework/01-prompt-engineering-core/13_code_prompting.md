@@ -1,6 +1,3 @@
-### FILE START: 13_code_prompting.md
-
-```markdown
 ---
 title: "Code Prompting"
 source: "22365_3_Prompt Engineering_v7"

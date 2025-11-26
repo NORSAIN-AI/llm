@@ -1,12 +1,3 @@
-Her er **`reasoning_template.md` (v1.0)** — ren Markdown, med full YAML-frontmatter og konsekvent struktur som resten av NPEF-malene.
-
----
-
-# **`reasoning_template.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-```markdown
 ---
 document_id: NPEF-TPL-005
 title: "Reasoning Prompt Template"

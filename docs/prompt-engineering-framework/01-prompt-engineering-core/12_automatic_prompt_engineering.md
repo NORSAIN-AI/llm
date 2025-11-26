@@ -1,6 +1,3 @@
-### FILE START: 12_automatic_prompt_engineering.md
-
-```markdown
 ---
 title: "Automatic Prompt Engineering (APE)"
 source: "22365_3_Prompt Engineering_v7"

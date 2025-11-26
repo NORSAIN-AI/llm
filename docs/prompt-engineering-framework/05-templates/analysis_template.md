@@ -1,12 +1,3 @@
-Her er **`analysis_template.md` (v1.0)** — ren Markdown, profesjonelt strukturert og helt i tråd med NPEF.
-
----
-
-# **`analysis_template.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-```markdown
 ---
 document_id: NPEF-TPL-003
 title: "Analysis Prompt Template"

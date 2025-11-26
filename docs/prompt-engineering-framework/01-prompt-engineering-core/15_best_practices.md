@@ -1,6 +1,3 @@
-### FILE START: 15_best_practices.md
-
-```markdown
 ---
 title: "Prompt Engineering — Best Practices"
 source: "22365_3_Prompt Engineering_v7"

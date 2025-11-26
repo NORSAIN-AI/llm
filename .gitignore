@@ -170,3 +170,8 @@ docs/.vitepress/cache/
 docs/.docusaurus/
 docs/.cache/
 docs/.sass-cache/
+
+# Block Dropbox/Windows metadata files
+*.attrs
+*.attr
+*.*:com.dropbox.attrs

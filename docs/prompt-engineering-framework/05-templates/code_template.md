@@ -1,12 +1,3 @@
-Her er **`code_template.md` (v1.0)** — ren Markdown, komplett YAML-frontmatter og strukturert etter standarden i NPEF.
-
----
-
-# **`code_template.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-`````markdown
 ---
 document_id: NPEF-TPL-006
 title: "Code Prompt Template"

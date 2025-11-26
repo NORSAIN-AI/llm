@@ -1,17 +1,3 @@
-Vi fortsetter videre til **Modul B: Templates**.
-Neste fil i rekkefølgen er:
-
-### **05_templates/extraction_template.md**
-
-Her kommer den — profesjonelt formatert, ren Markdown, med YAML-frontmatter og klar til repo/QMS.
-
----
-
-# **`extraction_template.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-````markdown
 ---
 document_id: NPEF-TPL-001
 title: "Extraction Prompt Template"

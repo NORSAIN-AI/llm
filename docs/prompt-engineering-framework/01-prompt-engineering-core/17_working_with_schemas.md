@@ -1,6 +1,3 @@
-### FILE START: 17_working_with_schemas.md
-
-```markdown
 ---
 title: "Working With Schemas"
 source: "22365_3_Prompt Engineering_v7"

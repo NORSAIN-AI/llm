@@ -1,12 +1,3 @@
-Her kommer neste fil i modul A — **`change_history_templates.md` (v1.0)** — ren, produksjonsklar Markdown med profesjonell struktur og YAML-frontmatter.
-
----
-
-# **`change_history_templates.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-```markdown
 ---
 document_id: NPEF-VC-002
 title: "Prompt Change History Templates"

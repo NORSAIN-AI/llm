@@ -1,12 +1,3 @@
-Under er **`classification_template.md` (v1.0)** — ren Markdown, profesjonell struktur, YAML-frontmatter, og helt i tråd med resten av rammeverket.
-
----
-
-# **`classification_template.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-```markdown
 ---
 document_id: NPEF-TPL-002
 title: "Classification Prompt Template"

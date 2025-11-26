@@ -1,23 +1,3 @@
-Perfekt — vi går videre til **mappe 06_schema_library**.
-
-Denne mappen består av tre hovedkomponenter:
-
-```
-06_schema_library/
-├── json_schemas/
-├── ts_interfaces/
-└── llm_structure_contracts.md
-```
-
-Jeg genererer én fil av gangen og starter med hovedfilen:
-
----
-
-# **`llm_structure_contracts.md` (v1.0)**
-
-**COPY–PASTE READY (ren Markdown)**
-
-```markdown
 ---
 document_id: NPEF-SCH-001
 title: "LLM Structure Contracts"

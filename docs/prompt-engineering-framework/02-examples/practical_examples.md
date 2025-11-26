@@ -1,8 +1,3 @@
-# **`practical_examples.md` (v1.0)**
-
-**COPY–PASTE READY**
-
-```markdown
 ---
 document_id: NPEF-EX-001
 title: "Practical Prompt Engineering Examples"

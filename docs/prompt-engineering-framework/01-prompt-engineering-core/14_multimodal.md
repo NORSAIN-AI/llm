@@ -1,6 +1,3 @@
-### FILE START: 14_multimodal.md
-
-```markdown
 ---
 title: "Multimodal Prompting"
 source: "22365_3_Prompt Engineering_v7"

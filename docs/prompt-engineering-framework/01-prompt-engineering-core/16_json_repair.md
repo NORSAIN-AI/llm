@@ -1,6 +1,3 @@
-### FILE START: 16_json_repair.md
-
-```markdown
 ---
 title: "JSON Repair Techniques"
 source: "22365_3_Prompt Engineering_v7"
